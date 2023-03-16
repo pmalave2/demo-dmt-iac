@@ -16,11 +16,10 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - run: |
-          curl -fsSL https://get.pulumi.com | sh
           pulumi login azblob://pulumi-state-bucket
-          pulumi stack select ${{ env.STACK_NAME }}
+          pulumi stack select ${{ vars.STACK_NAME }}
           pulumi preview
         env:
-          AZURE_STORAGE_ACCOUNT: ${{ env.AZURE_STORAGE_ACCOUNT }}
+          AZURE_STORAGE_ACCOUNT: ${{ vars.AZURE_STORAGE_ACCOUNT }}
           AZURE_STORAGE_KEY: ${{ secrets.AZURE_STORAGE_KEY }}
           PULUMI_CONFIG_PASSPHRASE: ${{ secrets.PULUMI_CONFIG_PASSPHRASE }}
