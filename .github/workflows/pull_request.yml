@@ -11,11 +11,12 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '11'
-      - name: Log Azure
+      - name: Login Azure
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-      - run: |
+      - name: Login to Pulumi state on Azure
+        run: |
           pulumi login azblob://pulumi-state-bucket
           pulumi stack select ${{ vars.STACK_NAME }}
           pulumi preview
