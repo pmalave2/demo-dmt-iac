@@ -16,9 +16,6 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - run: |
-          echo "variable 1 : ${{ vars.AZURE_STORAGE_ACCOUNT }}"
-          echo "variable 2 : ${{ secrets.AZURE_STORAGE_KEY }}"
-          echo "variable 3: ${{ secrets.PULUMI_CONFIG_PASSPHRASE }}"
           pulumi login azblob://pulumi-state-bucket
           pulumi stack select ${{ vars.STACK_NAME }}
           pulumi preview
@@ -26,3 +23,7 @@ jobs:
           AZURE_STORAGE_ACCOUNT: ${{ vars.AZURE_STORAGE_ACCOUNT }}
           AZURE_STORAGE_KEY: ${{ secrets.AZURE_STORAGE_KEY }}
           PULUMI_CONFIG_PASSPHRASE: ${{ secrets.PULUMI_CONFIG_PASSPHRASE }}
+          ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+          ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }} 
+          ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }} 
+          ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }} 
