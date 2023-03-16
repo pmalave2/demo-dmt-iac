@@ -12,7 +12,7 @@ public class RegistryConfig {
   private RegistryConfig() {}
 
   public static Registry dmtFrontendRegistry(String appName, Output<String> resourceGroupName) {
-    String dmtFrontendRegistryName = appName + "-frontend-registry";
+    String dmtFrontendRegistryName = appName + "-registry-frontend";
     dmtFrontendRegistryName = dmtFrontendRegistryName.replace("-", "");
 
     return new Registry(
@@ -30,7 +30,7 @@ public class RegistryConfig {
   }
 
   public static Registry dmtBackendRegistry(String appName, Output<String> resourceGroupName) {
-    String dmtBackendRegistryName = appName + "-backend-registry";
+    String dmtBackendRegistryName = appName + "-registry-backend";
     dmtBackendRegistryName = dmtBackendRegistryName.replace("-", "");
 
     return new Registry(

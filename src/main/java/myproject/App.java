@@ -4,12 +4,10 @@ import com.pulumi.Pulumi;
 import com.pulumi.azurenative.resources.ResourceGroup;
 import com.pulumi.azurenative.storage.StorageFunctions;
 import com.pulumi.azurenative.storage.inputs.ListStorageAccountKeysArgs;
-import com.pulumi.azurenative.storage.outputs.EndpointsResponse;
 import com.pulumi.core.Output;
 import myproject.resources.DatabaseAccountConfig;
 import myproject.resources.DatabaseConfig;
 import myproject.resources.RegistryConfig;
-import myproject.resources.StorageAccountConfig;
 
 /* TODO:
  * Resourcce Group
@@ -28,8 +26,6 @@ public class App {
 
           var resourceGroup = new ResourceGroup(resourceGroupName);
 
-          var storageAccount = StorageAccountConfig.storageAccount(appName, resourceGroup.name());
-
           var cosmosdbAccount =
               DatabaseAccountConfig.databaseAccount(appName, resourceGroup.name());
 
@@ -40,13 +36,16 @@ public class App {
               RegistryConfig.dmtFrontendRegistry(appName, resourceGroup.name());
           var dmtBackendRegistry = RegistryConfig.dmtBackendRegistry(appName, resourceGroup.name());
 
-          var primaryStorageKey =
-              getStorageAccountPrimaryKey(resourceGroup.name(), storageAccount.name());
+          // var storageAccount = StorageAccountConfig.storageAccount(appName,
+          // resourceGroup.name());
 
-          ctx.export("primaryStorageKey", primaryStorageKey);
-          ctx.export(
-              "staticEndpoint",
-              storageAccount.primaryEndpoints().applyValue(EndpointsResponse::web));
+          // var primaryStorageKey =
+          //     getStorageAccountPrimaryKey(resourceGroup.name(), storageAccount.name());
+
+          // ctx.export("primaryStorageKey", primaryStorageKey);
+          //   ctx.export(
+          //       "staticEndpoint",
+          //       storageAccount.primaryEndpoints().applyValue(EndpointsResponse::web));
           ctx.export("dmtFrontendRegistry", dmtFrontendRegistry.loginServer());
           ctx.export("dmtBackendRegistry", dmtBackendRegistry.loginServer());
         });
