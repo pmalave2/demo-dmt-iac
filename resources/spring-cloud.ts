@@ -3,7 +3,7 @@ import * as azure from '@pulumi/azure';
 
 export function springCloudService(appName: string, resourceGroupName: pulumi.Output<string>) {
   return new azure.appplatform.SpringCloudService(appName + '-service', {
-    resourceGroupName: resourceGroupName,
+    resourceGroupName: resourceGroupName    
   });
 }
 
@@ -20,7 +20,7 @@ export function springCloudApp(appName: string, resourceGroupName: pulumi.Output
 
 export function springCloudDeployment(springCloudAppId: pulumi.Output<string>) {
   return new azure.appplatform.SpringCloudJavaDeployment('springCloudDeployment', {
-    name: 'deployment',
+    name: 'develop',
     springCloudAppId: springCloudAppId,
     instanceCount: 2,
     jvmOptions: '-XX:+PrintGC',
