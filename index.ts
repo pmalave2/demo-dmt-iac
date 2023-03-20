@@ -4,7 +4,9 @@ import {
   databaseAccount,
   mongoDB,
   dmtBackendRegistry,
-  dmtFrontendRegistry
+  dmtFrontendRegistry,
+  springCloudApp,
+  springCloudService
 } from './resources';
 
 const appName = `${pulumi.getProject()}-${pulumi.getStack()}`;
@@ -20,5 +22,10 @@ const dmtFrontendRegistryConfig = dmtFrontendRegistry(appName, resourceGroup.nam
 
 const dmtBackendRegistryConfig = dmtBackendRegistry(appName, resourceGroup.name);
 
+const springCloudServiceConfig = springCloudService(appName, resourceGroup.name);
+
+const springCloudAppConfig = springCloudApp(appName, resourceGroup.name, springCloudServiceConfig.name);
+
 export const dmtFrontendRegistryUrl = dmtFrontendRegistryConfig.loginServer;
 export const dmtBackendRegistryUrl = dmtBackendRegistryConfig.loginServer;
+export const springAppUrl = springCloudAppConfig.url;
