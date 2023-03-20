@@ -11,8 +11,6 @@ export function springCloudApp(appName: string, resourceGroupName: pulumi.Output
   return new azure.appplatform.SpringCloudApp(appName + '-ms', {
     resourceGroupName: resourceGroupName,
     serviceName: serviceName,
-    identity: {
-      type: 'SystemAssigned, UserAssigned',
-    },
+    httpsOnly: true
   });
 }
