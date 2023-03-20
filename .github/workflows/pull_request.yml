@@ -10,13 +10,15 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
+      - name: Installing project dependencies
+        run: |
+          npm ci
       - name: Login Azure
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - name: Login to Pulumi state on Azure and preview changes
         run: |
-          npm ci
           pulumi login azblob://pulumi-state-bucket
           pulumi stack select ${{ vars.STACK_NAME }}
           pulumi preview
