@@ -16,6 +16,7 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - name: Login to Pulumi state on Azure and preview changes
         run: |
+          npm ci
           pulumi login azblob://pulumi-state-bucket
           pulumi stack select ${{ vars.STACK_NAME }}
           pulumi preview
