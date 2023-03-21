@@ -77,4 +77,3 @@ const insight20230321 = new azure.appinsights.Insights("insight20230321", {
 
 export const dmtFrontendRegistryUrl = dmtFrontendRegistryConfig.loginServer;
 export const dmtBackendRegistryUrl = dmtBackendRegistryConfig.loginServer;
-export const springAppUrl = springCloudAppConfig.url;

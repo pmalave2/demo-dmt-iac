@@ -22,7 +22,7 @@ export function springCloudDeployment(springCloudAppId: pulumi.Output<string>) {
   return new azure.appplatform.SpringCloudJavaDeployment('springCloudDeployment', {
     name: 'develop',
     springCloudAppId: springCloudAppId,
-    instanceCount: 2,
+    instanceCount: 1,
     jvmOptions: '-XX:+PrintGC',
     quota: {
       cpu: '1',
