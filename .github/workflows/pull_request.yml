@@ -32,3 +32,4 @@ jobs:
           ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }} 
           ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }} 
           MONGO_URI: ${{ secrets.MONGO_URI }} 
+          MONGO_PROD_URI: ${{ secrets.MONGO_PROD_URI }}
