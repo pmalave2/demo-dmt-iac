@@ -1,6 +1,7 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as resources from "@pulumi/azure-native/resources";
 import * as azuread from "@pulumi/azuread";
+import * as azure from "@pulumi/azure";
 import {
   databaseAccount,
   mongoDB,
@@ -45,6 +46,31 @@ const dmt_app_iac = new azuread.Application("dmt-app-iac", {
   protect: true,
 });
 
+const defaultresourcegroup_weu = new resources.ResourceGroup("defaultresourcegroup-weu", {
+  location: "westeurope",
+  resourceGroupName: "defaultresourcegroup-weu",
+}, {
+  protect: true,
+});
+const DefaultWorkspace_0a6582ad_635a_40d7_9ef2_61c9f8501bbc_WEU = new azure.operationalinsights.AnalyticsWorkspace("DefaultWorkspace-0a6582ad-635a-40d7-9ef2-61c9f8501bbc-WEU", {
+  location: "westeurope",
+  name: "DefaultWorkspace-0a6582ad-635a-40d7-9ef2-61c9f8501bbc-WEU",
+  resourceGroupName: "defaultresourcegroup-weu",
+  retentionInDays: 30,
+  sku: "PerGB2018",
+}, {
+  protect: true,
+});
+const insight20230321 = new azure.appinsights.Insights("insight20230321", {
+  applicationType: "web",
+  dailyDataCapInGb: 100,
+  location: "westeurope",
+  name: "insight20230321",
+  resourceGroupName: "dmt-dev-resourceGroup2211c593",
+  workspaceId: "/subscriptions/0a6582ad-635a-40d7-9ef2-61c9f8501bbc/resourceGroups/DefaultResourceGroup-WEU/providers/Microsoft.OperationalInsights/workspaces/DefaultWorkspace-0a6582ad-635a-40d7-9ef2-61c9f8501bbc-WEU",
+}, {
+  protect: true,
+});
 
 export const dmtFrontendRegistryUrl = dmtFrontendRegistryConfig.loginServer;
 export const dmtBackendRegistryUrl = dmtBackendRegistryConfig.loginServer;
