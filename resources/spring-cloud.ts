@@ -30,7 +30,7 @@ export function springCloudDeployment(springCloudAppId: pulumi.Output<string>) {
     },
     runtimeVersion: 'Java_17',
     environmentVariables: {
-      MONGO_URI: process.env.MONGO_URI || '',
+      MONGO_URI: '',
     }
   });
 }
@@ -47,7 +47,29 @@ export function springCloudDeploymentProd(springCloudAppId: pulumi.Output<string
     },
     runtimeVersion: 'Java_17',
     environmentVariables: {
-      MONGO_URI: process.env.MONGO_PROD_URI || '',
+      MONGO_URI: '',
+    }
+  });
+}
+
+export function springCloudDevConnection(springCloudDeploymentId: pulumi.Output<string>, targetResourceId: pulumi.Output<string>) {
+  return new azure.appplatform.SpringCloudConnection("springCloudDevMongoConnection", {
+    name: 'springCloudDevMongoConnection',
+    springCloudId: springCloudDeploymentId,
+    targetResourceId: targetResourceId,
+    authentication: {
+      type: "systemAssignedIdentity",
+    }
+  });
+}
+
+export function springCloudProdConnection(springCloudDeploymentId: pulumi.Output<string>, targetResourceId: pulumi.Output<string>) {
+  return new azure.appplatform.SpringCloudConnection("springCloudProdMongoConnection", {
+    name: 'springCloudProdMongoConnection',
+    springCloudId: springCloudDeploymentId,
+    targetResourceId: targetResourceId,
+    authentication: {
+      type: "systemAssignedIdentity",
     }
   });
 }
