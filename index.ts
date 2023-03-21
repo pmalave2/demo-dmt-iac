@@ -9,7 +9,8 @@ import {
   dmtFrontendRegistry,
   springCloudApp,
   springCloudService,
-  springCloudDeployment
+  springCloudDeployment,
+  springCloudDeploymentProd
 } from './resources';
 
 const appName = `${pulumi.getProject()}-${pulumi.getStack()}`;
@@ -30,6 +31,8 @@ const springCloudServiceConfig = springCloudService(appName, resourceGroup.name)
 const springCloudAppConfig = springCloudApp(appName, resourceGroup.name, springCloudServiceConfig.name);
 
 const springCloudDeploymentConfig = springCloudDeployment(springCloudAppConfig.id);
+
+const springCloudDeploymentProdConfig = springCloudDeploymentProd(springCloudAppConfig.id);
 
 const dmt_app_iac = new azuread.Application("dmt-app-iac", {
   api: {
