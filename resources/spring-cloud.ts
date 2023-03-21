@@ -42,12 +42,12 @@ export function springCloudDeploymentProd(springCloudAppId: pulumi.Output<string
     instanceCount: 2,
     jvmOptions: '-XX:+PrintGC',
     quota: {
-      cpu: '2',
+      cpu: '1',
       memory: '1Gi',
     },
     runtimeVersion: 'Java_17',
     environmentVariables: {
-      MONGO_URI: process.env.MONGO_URI || '',
+      MONGO_URI: process.env.MONGO_PROD_URI || '',
     }
   });
 }
