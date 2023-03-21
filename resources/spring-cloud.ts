@@ -53,23 +53,25 @@ export function springCloudDeploymentProd(springCloudAppId: pulumi.Output<string
 }
 
 export function springCloudDevConnection(springCloudDeploymentId: pulumi.Output<string>, targetResourceId: pulumi.Output<string>) {
-  return new azure.appplatform.SpringCloudConnection("springCloudDevMongoConnection", {
+  return new azure.appplatform.SpringCloudConnection('springCloudDevMongoConnection', {
     name: 'springCloudDevMongoConnection',
     springCloudId: springCloudDeploymentId,
     targetResourceId: targetResourceId,
     authentication: {
-      type: "systemAssignedIdentity",
-    }
+      type: 'secret'
+    },
+    clientType: 'springBoot'
   });
 }
 
 export function springCloudProdConnection(springCloudDeploymentId: pulumi.Output<string>, targetResourceId: pulumi.Output<string>) {
-  return new azure.appplatform.SpringCloudConnection("springCloudProdMongoConnection", {
+  return new azure.appplatform.SpringCloudConnection('springCloudProdMongoConnection', {
     name: 'springCloudProdMongoConnection',
     springCloudId: springCloudDeploymentId,
     targetResourceId: targetResourceId,
     authentication: {
-      type: "systemAssignedIdentity",
-    }
+      type: 'secret'
+    },
+    clientType: 'springBoot'
   });
 }
