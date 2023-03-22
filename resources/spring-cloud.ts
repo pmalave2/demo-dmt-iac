@@ -23,7 +23,7 @@ export function springCloudDeployment(springCloudAppId: pulumi.Output<string>) {
     name: 'develop',
     springCloudAppId: springCloudAppId,
     instanceCount: 1,
-    jvmOptions: '-XX:+PrintGC',
+    jvmOptions: '-Xlog:gc',
     quota: {
       cpu: '1',
       memory: '1Gi',
@@ -40,7 +40,7 @@ export function springCloudDeploymentProd(springCloudAppId: pulumi.Output<string
     name: 'prod',
     springCloudAppId: springCloudAppId,
     instanceCount: 2,
-    jvmOptions: '-XX:+PrintGC',
+    jvmOptions: '-Xlog:gc',
     quota: {
       cpu: '1',
       memory: '1Gi',
