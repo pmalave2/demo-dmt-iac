@@ -42,8 +42,6 @@ const springCloudProdConnectionConfig = springCloudProdConnection(springCloudDep
 const defaultresourcegroup_weu = new azure_native.resources.ResourceGroup('defaultresourcegroup-weu', {
   location: 'westeurope',
   resourceGroupName: 'defaultresourcegroup-weu',
-}, {
-  protect: true,
 });
 const DefaultWorkspace_0a6582ad_635a_40d7_9ef2_61c9f8501bbc_WEU = new azure.operationalinsights.AnalyticsWorkspace('DefaultWorkspace-0a6582ad-635a-40d7-9ef2-61c9f8501bbc-WEU', {
   location: 'westeurope',
@@ -51,8 +49,6 @@ const DefaultWorkspace_0a6582ad_635a_40d7_9ef2_61c9f8501bbc_WEU = new azure.oper
   resourceGroupName: 'defaultresourcegroup-weu',
   retentionInDays: 30,
   sku: 'PerGB2018',
-}, {
-  protect: true,
 });
 const insight20230321 = new azure.appinsights.Insights('insight20230321', {
   applicationType: 'web',
@@ -61,8 +57,6 @@ const insight20230321 = new azure.appinsights.Insights('insight20230321', {
   name: 'insight20230321',
   resourceGroupName: 'dmt-dev-resourceGroup2211c593',
   workspaceId: '/subscriptions/0a6582ad-635a-40d7-9ef2-61c9f8501bbc/resourceGroups/DefaultResourceGroup-WEU/providers/Microsoft.OperationalInsights/workspaces/DefaultWorkspace-0a6582ad-635a-40d7-9ef2-61c9f8501bbc-WEU',
-}, {
-  protect: true,
 });
 
 const staticSite = new azure_native.web.StaticSite('staticSite', {
@@ -100,4 +94,4 @@ export const defaultresourcegroup_weu_ID = defaultresourcegroup_weu.id;
 export const defaultWorkspace_0a6582ad_635a_40d7_9ef2_61c9f8501bbc_WEU = DefaultWorkspace_0a6582ad_635a_40d7_9ef2_61c9f8501bbc_WEU.id;
 export const insight20230321ID = insight20230321.id;
 export const staticSiteID = staticSite.id;
-export const staticSiteURL = staticSite.contentDistributionEndpoint;
+export const staticSiteURL = staticSite.repositoryUrl;
