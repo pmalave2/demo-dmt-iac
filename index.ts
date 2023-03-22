@@ -15,11 +15,6 @@ import {
   springCloudProdConnection
 } from './resources';
 
-/**NOTE
- * Create Service Pricipal
- * Assign role 'DocumentDBAccountContributor'
- */
-
 const appName = `${pulumi.getProject()}-${pulumi.getStack()}`;
 const resourceGroupName = `${appName}-resourceGroup`;
 
@@ -30,9 +25,9 @@ const cosmosdbAccount = databaseAccount(appName, resourceGroup.name);
 const mongoDBConfig = mongoDB(appName, resourceGroup.name, cosmosdbAccount.name);
 const mongoDBProdConfig = mongoDBProd(appName, resourceGroup.name, cosmosdbAccount.name);
 
-const dmtFrontendRegistryConfig = dmtFrontendRegistry(appName, resourceGroup.name);
+// const dmtFrontendRegistryConfig = dmtFrontendRegistry(appName, resourceGroup.name);
 
-const dmtBackendRegistryConfig = dmtBackendRegistry(appName, resourceGroup.name);
+// const dmtBackendRegistryConfig = dmtBackendRegistry(appName, resourceGroup.name);
 
 const springCloudServiceConfig = springCloudService(appName, resourceGroup.name);
 
@@ -86,11 +81,11 @@ const staticSite = new azure_native.web.StaticSite('staticSite', {
   }
 });
 
-export const dmtFrontendRegistryUrl = dmtFrontendRegistryConfig.loginServer;
-export const dmtBackendRegistryUrl = dmtBackendRegistryConfig.loginServer;
+// export const dmtFrontendRegistryUrl = dmtFrontendRegistryConfig.loginServer;
+// export const dmtBackendRegistryUrl = dmtBackendRegistryConfig.loginServer;
 
-export const dmtFrontendRegistryID = dmtFrontendRegistryConfig.id;
-export const dmtBackendRegistryID = dmtBackendRegistryConfig.id;
+// export const dmtFrontendRegistryID = dmtFrontendRegistryConfig.id;
+// export const dmtBackendRegistryID = dmtBackendRegistryConfig.id;
 export const resourceGroupID = resourceGroup.id;
 export const databaseAccountID = cosmosdbAccount.id;
 export const mongoDBID = mongoDBConfig.id;
