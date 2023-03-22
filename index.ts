@@ -1,5 +1,5 @@
 import * as pulumi from '@pulumi/pulumi';
-import * as azure_native from "@pulumi/azure-native";
+import * as azure_native from '@pulumi/azure-native';
 import * as azure from '@pulumi/azure';
 import {
   databaseAccount,
@@ -70,16 +70,20 @@ const insight20230321 = new azure.appinsights.Insights('insight20230321', {
   protect: true,
 });
 
-const staticSite = new azure_native.web.StaticSite("staticSite", {
-  branch: "main",
-  name: "dmt-frontend",
-  repositoryUrl: "https://github.com/pmalave2/demo-dmt-frontend",
+const staticSite = new azure_native.web.StaticSite('staticSite', {
+  branch: 'main',
+  name: 'dmt-frontend',
+  repositoryUrl: 'https://github.com/pmalave2/demo-dmt-frontend',
   repositoryToken: process.env.GH_TOKEN,
   resourceGroupName: resourceGroup.name,
   sku: {
-    name: "Free",
-    tier: "Free",
+    name: 'Free',
+    tier: 'Free',
   },
+  buildProperties: {
+    outputLocation: 'dist/dmt-frontend',
+    appBuildCommand: 'npm run build'
+  }
 });
 
 export const dmtFrontendRegistryUrl = dmtFrontendRegistryConfig.loginServer;
