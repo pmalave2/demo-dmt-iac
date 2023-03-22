@@ -1,5 +1,5 @@
 import * as pulumi from '@pulumi/pulumi';
-import * as resources from '@pulumi/azure-native/resources';
+import * as azure_native from "@pulumi/azure-native";
 import * as azure from '@pulumi/azure';
 import {
   databaseAccount,
@@ -23,7 +23,7 @@ import {
 const appName = `${pulumi.getProject()}-${pulumi.getStack()}`;
 const resourceGroupName = `${appName}-resourceGroup`;
 
-const resourceGroup = new resources.ResourceGroup(resourceGroupName);
+const resourceGroup = new azure_native.resources.ResourceGroup(resourceGroupName);
 
 const cosmosdbAccount = databaseAccount(appName, resourceGroup.name);
 
@@ -44,7 +44,7 @@ const springCloudDevConnectionConfig = springCloudDevConnection(springCloudDeplo
 const springCloudDeploymentProdConfig = springCloudDeploymentProd(springCloudAppConfig.id);
 const springCloudProdConnectionConfig = springCloudProdConnection(springCloudDeploymentProdConfig.id, mongoDBProdConfig.id);
 
-const defaultresourcegroup_weu = new resources.ResourceGroup('defaultresourcegroup-weu', {
+const defaultresourcegroup_weu = new azure_native.resources.ResourceGroup('defaultresourcegroup-weu', {
   location: 'westeurope',
   resourceGroupName: 'defaultresourcegroup-weu',
 }, {
@@ -70,6 +70,18 @@ const insight20230321 = new azure.appinsights.Insights('insight20230321', {
   protect: true,
 });
 
+const staticSite = new azure_native.web.StaticSite("staticSite", {
+  branch: "main",
+  name: "dmt-frontend",
+  repositoryUrl: "https://github.com/pmalave2/demo-dmt-frontend",
+  repositoryToken: process.env.GH_TOKEN,
+  resourceGroupName: resourceGroup.name,
+  sku: {
+    name: "Free",
+    tier: "Free",
+  },
+});
+
 export const dmtFrontendRegistryUrl = dmtFrontendRegistryConfig.loginServer;
 export const dmtBackendRegistryUrl = dmtBackendRegistryConfig.loginServer;
 
@@ -88,3 +100,5 @@ export const springCloudProdConnectionID = springCloudProdConnectionConfig.id;
 export const defaultresourcegroup_weu_ID = defaultresourcegroup_weu.id;
 export const defaultWorkspace_0a6582ad_635a_40d7_9ef2_61c9f8501bbc_WEU = DefaultWorkspace_0a6582ad_635a_40d7_9ef2_61c9f8501bbc_WEU.id;
 export const insight20230321ID = insight20230321.id;
+export const staticSiteID = staticSite.id;
+export const staticSiteURL = staticSite.contentDistributionEndpoint;
