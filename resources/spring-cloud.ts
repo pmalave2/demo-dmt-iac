@@ -31,6 +31,8 @@ export function springCloudDeployment(springCloudAppId: pulumi.Output<string>) {
     runtimeVersion: 'Java_17',
     environmentVariables: {
       MONGO_URI: '',
+      AZ_AD_CLIENT_ID: '',
+      AZ_AD_APP_ID: ''
     }
   });
 }
@@ -48,6 +50,8 @@ export function springCloudDeploymentProd(springCloudAppId: pulumi.Output<string
     runtimeVersion: 'Java_17',
     environmentVariables: {
       MONGO_URI: '',
+      AZ_AD_CLIENT_ID: '',
+      AZ_AD_APP_ID: ''
     }
   });
 }

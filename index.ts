@@ -29,15 +29,15 @@ const mongoDBProdConfig = mongoDBProd(appName, resourceGroup.name, cosmosdbAccou
 
 // const dmtBackendRegistryConfig = dmtBackendRegistry(appName, resourceGroup.name);
 
-const springCloudServiceConfig = springCloudService(appName, resourceGroup.name);
+// const springCloudServiceConfig = springCloudService(appName, resourceGroup.name);
 
-const springCloudAppConfig = springCloudApp(appName, resourceGroup.name, springCloudServiceConfig.name);
+// const springCloudAppConfig = springCloudApp(appName, resourceGroup.name, springCloudServiceConfig.name);
 
-const springCloudDeploymentConfig = springCloudDeployment(springCloudAppConfig.id);
-const springCloudDevConnectionConfig = springCloudDevConnection(springCloudDeploymentConfig.id, mongoDBConfig.id);
+// const springCloudDeploymentConfig = springCloudDeployment(springCloudAppConfig.id);
+// const springCloudDevConnectionConfig = springCloudDevConnection(springCloudDeploymentConfig.id, mongoDBConfig.id);
 
-const springCloudDeploymentProdConfig = springCloudDeploymentProd(springCloudAppConfig.id);
-const springCloudProdConnectionConfig = springCloudProdConnection(springCloudDeploymentProdConfig.id, mongoDBProdConfig.id);
+// const springCloudDeploymentProdConfig = springCloudDeploymentProd(springCloudAppConfig.id);
+// const springCloudProdConnectionConfig = springCloudProdConnection(springCloudDeploymentProdConfig.id, mongoDBProdConfig.id);
 
 const defaultresourcegroup_weu = new azure_native.resources.ResourceGroup('defaultresourcegroup-weu', {
   location: 'westeurope',
@@ -84,12 +84,12 @@ export const resourceGroupID = resourceGroup.id;
 export const databaseAccountID = cosmosdbAccount.id;
 export const mongoDBID = mongoDBConfig.id;
 export const mongoDBProdID = mongoDBProdConfig.id;
-export const springCloudServiceID = springCloudServiceConfig.id;
-export const springCloudAppID = springCloudAppConfig.id;
-export const springCloudDeploymentID = springCloudDeploymentConfig.id;
-export const springCloudDevConnectionID = springCloudDevConnectionConfig.id;
-export const springCloudDeploymentProdID = springCloudDeploymentProdConfig.id;
-export const springCloudProdConnectionID = springCloudProdConnectionConfig.id;
+// export const springCloudServiceID = springCloudServiceConfig.id;
+// export const springCloudAppID = springCloudAppConfig.id;
+// export const springCloudDeploymentID = springCloudDeploymentConfig.id;
+// export const springCloudDevConnectionID = springCloudDevConnectionConfig.id;
+// export const springCloudDeploymentProdID = springCloudDeploymentProdConfig.id;
+// export const springCloudProdConnectionID = springCloudProdConnectionConfig.id;
 export const defaultresourcegroup_weu_ID = defaultresourcegroup_weu.id;
 export const defaultWorkspace_0a6582ad_635a_40d7_9ef2_61c9f8501bbc_WEU = DefaultWorkspace_0a6582ad_635a_40d7_9ef2_61c9f8501bbc_WEU.id;
 export const insight20230321ID = insight20230321.id;
