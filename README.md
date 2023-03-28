@@ -1,6 +1,6 @@
 # demo-iac
 
-az ad sp create-for-rbac --name "dmt-app-iac" --role Contributor --scopes /subscriptions/<subscription_id> --sdk-auth
+az ad sp create-for-rbac --name <service_principal_name> --role Contributor --scopes /subscriptions/<subscription_id> --sdk-auth
 
 az role assignment create \
   --assignee <service_principal_id> \
@@ -8,7 +8,17 @@ az role assignment create \
   --scope "/subscriptions/<subscription_id>" \
   --description "The deployment pipeline for DMT-APP needs to be able to create roles assign within the resource group."
 
+az login --service-principal -u <clientId> -p <clientSecret> --tenant <tenantId>
+
+export ARM_CLIENT_ID=<clientId> && export ARM_CLIENT_SECRET=<clientSecret> && export ARM_TENANT_ID=<tenantId> && export ARM_SUBSCRIPTION_ID=<subscriptionId>
+
 az spring app logs --name <app_name> -g <resource_group_name> -s <app_service_name> -i <app_instance_name> --follow
 
-export AZURE_STORAGE_ACCOUNT=<storage_account_name>
-export AZURE_STORAGE_KEY=<storage_account_key>
+export AZURE_STORAGE_ACCOUNT=<storage_account_name> && export AZURE_STORAGE_KEY=<storage_account_key>
+
+az spring app deploy \
+  --resource-group <rg_name> \
+  --service <app_service_name> \
+  --name <app_name> \
+  --deployment <deployment_name> \
+  --artifact-path target/dmt-backend.jar 
