@@ -5,7 +5,7 @@ az ad sp create-for-rbac --name <service_principal_name> --role Contributor --sc
 az role assignment create \
   --assignee <service_principal_id> \
   --role Owner \
-  --scope "/subscriptions/<subscription_id>" \
+  --scope "/subscriptions/<subscription_id>/resourceGroups/<resource_group_name>" \
   --description "The deployment pipeline for DMT-APP needs to be able to create roles assign within the resource group."
 
 az login --service-principal -u <clientId> -p <clientSecret> --tenant <tenantId>
