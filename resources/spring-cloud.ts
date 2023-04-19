@@ -31,8 +31,8 @@ export function springCloudDeployment(springCloudAppId: pulumi.Output<string>) {
     runtimeVersion: 'Java_17',
     environmentVariables: {
       MONGO_URI: '',
-      AZ_AD_CLIENT_ID: '',
-      AZ_AD_APP_ID: ''
+      AZ_AD_CLIENT_ID: '54d3cbe5-aea3-4623-93b6-7ee609fa0611',
+      AZ_AD_APP_ID: 'api://54d3cbe5-aea3-4623-93b6-7ee609fa0611'
     }
   });
 }
@@ -50,8 +50,8 @@ export function springCloudDeploymentProd(springCloudAppId: pulumi.Output<string
     runtimeVersion: 'Java_17',
     environmentVariables: {
       MONGO_URI: '',
-      AZ_AD_CLIENT_ID: '',
-      AZ_AD_APP_ID: ''
+      AZ_AD_CLIENT_ID: '54d3cbe5-aea3-4623-93b6-7ee609fa0611',
+      AZ_AD_APP_ID: 'api://54d3cbe5-aea3-4623-93b6-7ee609fa0611'
     }
   });
 }

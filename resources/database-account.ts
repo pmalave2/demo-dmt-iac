@@ -1,21 +1,27 @@
 import * as pulumi from "@pulumi/pulumi";
-import * as azure_native from "@pulumi/azure-native";
+import {
+  DatabaseAccount, 
+  DatabaseAccountKind,
+  DatabaseAccountOfferType,
+  BackupPolicyType,
+  ServerVersion
+} from "@pulumi/azure-native/documentdb";
 
 export function databaseAccount(appName: string, resourceGroupName: pulumi.Output<string>) {
   const cosmosdbAccountName = `${appName}-database-account`;
 
-  return new azure_native.documentdb.DatabaseAccount(cosmosdbAccountName, {
-    kind: azure_native.documentdb.DatabaseAccountKind.MongoDB,
+  return new DatabaseAccount(cosmosdbAccountName, {
+    kind: DatabaseAccountKind.MongoDB,
     accountName: cosmosdbAccountName,
     resourceGroupName: resourceGroupName,
-    databaseAccountOfferType: azure_native.documentdb.DatabaseAccountOfferType.Standard,
+    databaseAccountOfferType: DatabaseAccountOfferType.Standard,
     locations: [{
       failoverPriority: 0,
       isZoneRedundant: false,
       locationName: 'West Europe'
     }],
     backupPolicy: {
-      type: azure_native.documentdb.BackupPolicyType.Periodic,
+      type: BackupPolicyType.Periodic,
       periodicModeProperties: {
         backupIntervalInMinutes: 240,
         backupRetentionIntervalInHours: 8
@@ -27,7 +33,7 @@ export function databaseAccount(appName: string, resourceGroupName: pulumi.Outpu
       { name: 'DisableRateLimitingResponses' },
       { name: 'EnableServerless' }
     ],
-    apiProperties: { serverVersion: azure_native.documentdb.ServerVersion.ServerVersion_4_0 },
-    enableFreeTier: false
+    apiProperties: { serverVersion: ServerVersion.ServerVersion_4_0 },
+    enableFreeTier: true
   });
 }

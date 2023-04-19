@@ -1,16 +1,16 @@
 import * as pulumi from '@pulumi/pulumi';
-import * as azure_native from '@pulumi/azure-native';
+import { Registry, SkuName } from "@pulumi/azure-native/containerregistry";
 
 export function dmtFrontendRegistry(appName: string, resourceGroupName: pulumi.Output<string>) {
   const registry = appName + 'registryfrontend';
   const registryName = registry.replace('-', '');
 
-  return new azure_native.containerregistry.Registry(registryName, {
+  return new Registry(registryName, {
     adminUserEnabled: true,
     registryName: registryName,
     resourceGroupName: resourceGroupName,
     sku: {
-      name: azure_native.containerregistry.SkuName.Basic
+      name: SkuName.Basic
     },
     policies: {
       retentionPolicy: {
@@ -24,12 +24,12 @@ export function dmtBackendRegistry(appName: string, resourceGroupName: pulumi.Ou
   const registry = appName + 'registrybackend';
   const registryName = registry.replace('-', '');
 
-  return new azure_native.containerregistry.Registry(registryName, {
+  return new Registry(registryName, {
     adminUserEnabled: true,
     registryName: registryName,
     resourceGroupName: resourceGroupName,
     sku: {
-      name: azure_native.containerregistry.SkuName.Basic
+      name: SkuName.Basic
     },
     policies: {
       retentionPolicy: {

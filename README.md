@@ -1,5 +1,11 @@
 # demo-iac
 
+pulumi login azblob://my-pulumi-state-bucket
+
+pulumi stack init dev
+
+pulumi config set azure-native:location westeurope
+
 az ad sp create-for-rbac --name <service_principal_name> --role Contributor --scopes /subscriptions/<subscription_id> --sdk-auth
 
 az role assignment create \
