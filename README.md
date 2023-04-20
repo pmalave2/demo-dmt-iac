@@ -28,3 +28,13 @@ az spring app deploy \
   --name <app_name> \
   --deployment <deployment_name> \
   --artifact-path target/dmt-backend.jar 
+
+crear GitHub token para el Site
+
+OAuth:
+  crear tenent AD
+  crear usuario en el tenant
+  crear App en el tenant
+  crear Application ID URI (api://dmt)
+  crear Authentication (SPA, single tenant, http://localhost:4200(poner uri del Site) )
+  crear Expose an API (Scopes defined by this API, Authorized client applications)

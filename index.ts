@@ -55,21 +55,21 @@ const springCloudDevConnectionConfig = springCloudDevConnection(springCloudDeplo
 //   workspaceId: analyticsWorkspace.id,
 // });
 
-// const staticSite = new StaticSite('staticSite', {
-//   branch: 'main',
-//   name: 'dmt-frontend',
-//   repositoryUrl: 'https://github.com/pmalave2/demo-dmt-frontend',
-//   repositoryToken: process.env.GH_TOKEN,
-//   resourceGroupName: resourceGroup.name,
-//   sku: {
-//     name: 'Free',
-//     tier: 'Free',
-//   },
-//   buildProperties: {
-//     outputLocation: 'dist/dmt-frontend',
-//     appBuildCommand: 'npm run build'
-//   }
-// });
+const staticSite = new StaticSite('staticSite', {
+  branch: 'main',
+  name: 'dmt-frontend',
+  repositoryUrl: 'https://github.com/pmalave2/demo-dmt-frontend',
+  repositoryToken: process.env.GH_TOKEN,
+  resourceGroupName: resourceGroup.name,
+  sku: {
+    name: 'Free',
+    tier: 'Free',
+  },
+  buildProperties: {
+    outputLocation: 'dist/dmt-frontend',
+    appBuildCommand: 'npm run build'
+  }
+});
 
 
 // export const dmtFrontendRegistryID = dmtFrontendRegistryConfig.id;
@@ -86,7 +86,7 @@ export const springCloudDevConnectionID = springCloudDevConnectionConfig.id;
 // export const springCloudProdConnectionID = springCloudProdConnectionConfig.id;
 // export const analyticsWorkspaceID = analyticsWorkspace.id;
 // export const insight01ID = insight01.id;
-// export const staticSiteID = staticSite.id;
+export const staticSiteID = staticSite.id;
 
 // export const dmtFrontendRegistryUrl = dmtFrontendRegistryConfig.loginServer;
 // export const dmtBackendRegistryUrl = dmtBackendRegistryConfig.loginServer;
