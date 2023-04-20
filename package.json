@@ -2,12 +2,14 @@
     "name": "dmt",
     "main": "index.ts",
     "devDependencies": {
-        "@types/node": "^18"
+        "@types/node": "^18",
+        "@types/uuid": "^9.0.1"
     },
     "dependencies": {
         "@pulumi/azure": "^5.40.0",
-        "@pulumi/azure-native": "^1.100.0",
+        "@pulumi/azure-native": "^1.100.1",
         "@pulumi/azuread": "^5.36.0",
-        "@pulumi/pulumi": "^3.64.0"
+        "@pulumi/pulumi": "^3.64.0",
+        "uuid": "^9.0.0"
     }
 }

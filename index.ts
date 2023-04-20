@@ -13,7 +13,8 @@ import {
   springCloudDeploymentProd,
   mongoDBProd,
   springCloudDevConnection,
-  springCloudProdConnection
+  springCloudProdConnection,
+  dmtApplicationRegistration
 } from './resources';
 
 const appName = `${pulumi.getProject()}-${pulumi.getStack()}`;
@@ -55,6 +56,8 @@ const springCloudDevConnectionConfig = springCloudDevConnection(springCloudDeplo
 //   workspaceId: analyticsWorkspace.id,
 // });
 
+const dmtApplicationReg = dmtApplicationRegistration();
+
 const staticSite = new StaticSite('staticSite', {
   branch: 'main',
   name: 'dmt-frontend',
@@ -87,6 +90,7 @@ export const springCloudDevConnectionID = springCloudDevConnectionConfig.id;
 // export const analyticsWorkspaceID = analyticsWorkspace.id;
 // export const insight01ID = insight01.id;
 export const staticSiteID = staticSite.id;
+export const dmtApplicationRegID = dmtApplicationReg.id;
 
 // export const dmtFrontendRegistryUrl = dmtFrontendRegistryConfig.loginServer;
 // export const dmtBackendRegistryUrl = dmtBackendRegistryConfig.loginServer;

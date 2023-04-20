@@ -34,7 +34,8 @@ crear GitHub token para el Site
 OAuth:
   crear tenent AD
   crear usuario en el tenant
-  crear App en el tenant
+  crear Registrar App en el tenant
+  usar integration assistant
   crear Application ID URI (api://dmt)
   crear Authentication (SPA, single tenant, http://localhost:4200(poner uri del Site) )
   crear Expose an API (Scopes defined by this API, Authorized client applications)
