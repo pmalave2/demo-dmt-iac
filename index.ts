@@ -56,7 +56,7 @@ const springCloudDevConnectionConfig = springCloudDevConnection(springCloudDeplo
 //   workspaceId: analyticsWorkspace.id,
 // });
 
-const dmtApplicationReg = dmtApplicationRegistration();
+//const dmtApplicationReg = dmtApplicationRegistration();
 
 const staticSite = new StaticSite('staticSite', {
   branch: 'main',
@@ -90,7 +90,7 @@ export const springCloudDevConnectionID = springCloudDevConnectionConfig.id;
 // export const analyticsWorkspaceID = analyticsWorkspace.id;
 // export const insight01ID = insight01.id;
 export const staticSiteID = staticSite.id;
-export const dmtApplicationRegID = dmtApplicationReg.id;
+//export const dmtApplicationRegID = dmtApplicationReg.id;
 
 // export const dmtFrontendRegistryUrl = dmtFrontendRegistryConfig.loginServer;
 // export const dmtBackendRegistryUrl = dmtBackendRegistryConfig.loginServer;
